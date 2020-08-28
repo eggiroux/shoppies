@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { FiSearch } from "react-icons/fi";
 
+import { searchResultsFromApi } from "../../actions";
+
 const SearchBar = () => {
+  const dispatch = useDispatch();
   const [input, setInput] = React.useState("");
 
   return (
@@ -23,7 +27,7 @@ const SearchBar = () => {
                   `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&type=movie&s=${input}`
                 )
                   .then((res) => res.json())
-                  .then((data) => console.log(data));
+                  .then((data) => dispatch(searchResultsFromApi(data.Search)));
                 break;
               }
             }
