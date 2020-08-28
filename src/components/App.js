@@ -4,6 +4,8 @@ import Globalstyles from "./Globalstyles";
 
 import Header from "./Header";
 import SearchBar from "./SearchBar";
+import SearchResults from "./SearchResults";
+import Nominations from "./Nominations";
 
 function App() {
   return (
@@ -11,14 +13,21 @@ function App() {
       <Globalstyles />
       <Header />
       <SearchBar />
-      {/*<Results />
-      <MovieList /> */}
+      <Bottom>
+        <SearchResults />
+        <Nominations />
+      </Bottom>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
-  padding: 35px 200px;
+  padding: 35px 150px;
+`;
+
+const Bottom = styled.div`
+  display: flex;
+  align-items: start;
 `;
 
 export default App;

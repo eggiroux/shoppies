@@ -27,7 +27,11 @@ const SearchBar = () => {
                   `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&type=movie&s=${input}`
                 )
                   .then((res) => res.json())
-                  .then((data) => dispatch(searchResultsFromApi(data.Search)));
+                  .then((data) =>
+                    dispatch(
+                      searchResultsFromApi({ search: data.Search, input })
+                    )
+                  );
                 break;
               }
             }

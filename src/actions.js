@@ -1,9 +1,16 @@
-export const searchResultsFromApi = (resultsArray) => ({
+export const searchResultsFromApi = ({ search, input }) => ({
   type: "SEARCH_RESULTS_FROM_API",
-  resultsArray,
+  search,
+  input,
 });
 
-export const addItem = (item) => ({
-  type: "ADD_ITEM",
-  item,
+export const addMovieToNominations = ({ movieId, movie }) => ({
+  type: "ADD_MOVIE_TO_NOMINATIONS",
+  movieId,
+  movie,
+});
+
+export const removeMovieFromNominations = (movieId) => ({
+  type: "REMOVE_MOVIE_FROM_NOMINATIONS",
+  movieId,
 });
