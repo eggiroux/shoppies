@@ -24,7 +24,7 @@ const SearchBar = () => {
             switch (ev.key) {
               case "Enter": {
                 fetch(
-                  `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&type=movie&s=${input}`
+                  `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&type=movie&s=${input}`
                 )
                   .then((res) => res.json())
                   .then((data) =>

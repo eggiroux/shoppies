@@ -19,7 +19,7 @@ export default function listReducer(state = initialState, action) {
       });
     }
     case "REMOVE_MOVIE_FROM_NOMINATIONS": {
-      console.log("remove movie", action);
+      //console.log("remove movie", action);
       return produce(state, (draftState) => {
         delete draftState.nominations[action.movieId];
       });
