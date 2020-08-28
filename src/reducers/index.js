@@ -1,17 +1,31 @@
 import { produce } from "immer";
 
-const initialState = { searchResults: [], nominations: {}, searchTerm: "" };
+const initialState = {
+  searchResults: [],
+  nominations: {},
+  searchTerm: "",
+  searchError: null,
+};
 
 export default function listReducer(state = initialState, action) {
   //console.log(state);
   switch (action.type) {
     case "SEARCH_RESULTS_FROM_API": {
-      //console.log("from reducers", action);
-      return produce(state, (draftState) => {
-        draftState.searchResults = action.search;
-        draftState.searchTerm = action.input;
-      });
+      if (action.search) {
+        return produce(state, (draftState) => {
+          draftState.searchResults = action.search;
+          draftState.searchTerm = action.input;
+          draftState.searchError = null;
+        });
+      } else {
+        return produce(state, (draftState) => {
+          draftState.searchError = "No match found. Try again.";
+          draftState.searchResults = [];
+          draftState.searchTerm = action.input;
+        });
+      }
     }
+
     case "ADD_MOVIE_TO_NOMINATIONS": {
       //console.log("from reducers", action);
       return produce(state, (draftState) => {

@@ -11,7 +11,7 @@ const SearchBar = () => {
 
   return (
     <Wrapper>
-      <Title>Movie Title</Title>
+      <Title>Movie title</Title>
       <SearchArea>
         <FiSearch />
         <TextInput
