@@ -2,9 +2,9 @@
 
 This project is created for my Shopify Interships application.
 
-egiroux@gmail.com
+Made by me, Etienne Giroux, egiroux@gmail.com
 
-A live version of the site is hosted [here](https://eggiroux-shoppies-awards.netlify.app/).
+A live version of the site is hosted [here](https://shoppies.eggiroux.vercel.app/).
 
 ## Stack used
 
