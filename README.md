@@ -1,12 +1,10 @@
-# intro
+# Intro
 
 This project is created for my Shopify Interships application.
 
 egiroux@gmail.com
 
-A live version of the site is hosted at
-
-![alt  text](https://eggiroux-shoppies-awards.netlify.app/)
+A live version of the site is hosted [here](https://eggiroux-shoppies-awards.netlify.app/).
 
 ## Stack used
 
@@ -41,5 +39,3 @@ Run the application
 ```
 yarn start
 ```
-
-## To do
