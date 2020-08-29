@@ -1,6 +1,6 @@
 # Intro
 
-This project is created for my Shopify Interships application.
+This project is created for my Shopify Internships Winter 2021 application.
 
 Made by me, Etienne Giroux, egiroux@gmail.com
 
