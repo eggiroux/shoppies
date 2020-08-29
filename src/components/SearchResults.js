@@ -19,40 +19,47 @@ const SearchResults = () => {
     }
   );
 
+  if (searchError) {
+    return (
+      <Wrapper>
+        <h3>Results for "{searchTerm}"</h3>
+        <Error>{searchError}</Error>
+      </Wrapper>
+    );
+  }
+
   return (
     <Wrapper>
       <h3>Results for "{searchTerm}"</h3>
-      {searchError ? (
-        <Error>{searchError}</Error>
-      ) : (
-        <ul>
-          {searchResults.map((item) => {
-            const isDisabled = nominations[item.imdbID];
-            return (
-              <MovieListItem
-                key={`${item.Title}-${item.Year}`}
-                title={item.Title}
-                year={item.Year}
-                movieId={item.imdbID}
-                isDisabled={isDisabled}
-                action="Nominate"
-                onClick={() => {
-                  dispatch(
-                    addMovieToNominations({
+
+      <ul>
+        {searchResults.map((item) => {
+          const isDisabled =
+            Object.keys(nominations).length >= 5 || nominations[item.imdbID];
+          return (
+            <MovieListItem
+              key={`${item.Title}-${item.Year}`}
+              title={item.Title}
+              year={item.Year}
+              movieId={item.imdbID}
+              isDisabled={isDisabled}
+              action="Nominate"
+              onClick={() => {
+                dispatch(
+                  addMovieToNominations({
+                    movieId: item.imdbID,
+                    movie: {
                       movieId: item.imdbID,
-                      movie: {
-                        movieId: item.imdbID,
-                        title: item.Title,
-                        year: item.Year,
-                      },
-                    })
-                  );
-                }}
-              />
-            );
-          })}
-        </ul>
-      )}
+                      title: item.Title,
+                      year: item.Year,
+                    },
+                  })
+                );
+              }}
+            />
+          );
+        })}
+      </ul>
     </Wrapper>
   );
 };
@@ -67,6 +74,7 @@ const Wrapper = styled.div`
 
 const Error = styled.p`
   margin-top: 10px;
+  color: red;
 `;
 
 export default SearchResults;

@@ -8,6 +8,11 @@ import { searchResultsFromApi } from "../../actions";
 const SearchBar = () => {
   const dispatch = useDispatch();
   const [input, setInput] = React.useState("");
+  const inputRef = React.useRef();
+
+  React.useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   return (
     <Wrapper>
@@ -15,25 +20,38 @@ const SearchBar = () => {
       <SearchArea>
         <FiSearch />
         <TextInput
+          ref={inputRef}
           type="text"
           value={input}
+          placeholder="Movie title"
           onChange={(ev) => {
             setInput(ev.target.value);
           }}
           onKeyDown={(ev) => {
             switch (ev.key) {
               case "Enter": {
-                fetch(
-                  `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&type=movie&s=${input}`
-                )
-                  .then((res) => res.json())
-                  .then((data) =>
-                    dispatch(
-                      searchResultsFromApi({ search: data.Search, input })
-                    )
+                if (input !== "") {
+                  fetch(
+                    `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&type=movie&s=${input}`
+                  )
+                    .then((res) => res.json())
+                    .then((data) => {
+                      console.log(data);
+                      dispatch(searchResultsFromApi({ data, input }));
+                    });
+                } else {
+                  dispatch(
+                    searchResultsFromApi({
+                      data: { Error: "Please type in a movie title." },
+                      input,
+                    })
                   );
+                }
+
                 break;
               }
+              default:
+                break;
             }
           }}
         />

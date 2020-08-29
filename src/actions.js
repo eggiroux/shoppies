@@ -1,6 +1,6 @@
-export const searchResultsFromApi = ({ search, input }) => ({
+export const searchResultsFromApi = ({ data, input }) => ({
   type: "SEARCH_RESULTS_FROM_API",
-  search,
+  data,
   input,
 });
 
