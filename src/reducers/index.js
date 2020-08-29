@@ -5,6 +5,7 @@ const initialState = {
   nominations: {},
   searchTerm: "",
   searchError: null,
+  listComplete: false,
 };
 
 export default function listReducer(state = initialState, action) {
@@ -29,12 +30,16 @@ export default function listReducer(state = initialState, action) {
       //console.log("from reducers", action);
       return produce(state, (draftState) => {
         draftState.nominations[action.movieId] = action.movie;
+        if (Object.keys(draftState.nominations).length >= 5) {
+          draftState.listComplete = true;
+        }
       });
     }
     case "REMOVE_MOVIE_FROM_NOMINATIONS": {
       //console.log("remove movie", action);
       return produce(state, (draftState) => {
         delete draftState.nominations[action.movieId];
+        draftState.listComplete = false;
       });
     }
 

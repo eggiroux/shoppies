@@ -8,16 +8,21 @@ import MovieListItem from "./MovieListItem";
 
 const SearchResults = () => {
   const dispatch = useDispatch();
-  const { searchResults, searchTerm, nominations, searchError } = useSelector(
-    (state) => {
-      return {
-        searchResults: state.searchResults,
-        searchTerm: state.searchTerm,
-        nominations: state.nominations,
-        searchError: state.searchError,
-      };
-    }
-  );
+  const {
+    searchResults,
+    searchTerm,
+    searchError,
+    nominations,
+    listComplete,
+  } = useSelector((state) => {
+    return {
+      searchResults: state.searchResults,
+      searchTerm: state.searchTerm,
+      searchError: state.searchError,
+      nominations: state.nominations,
+      listComplete: state.listComplete,
+    };
+  });
 
   if (searchError) {
     return (
@@ -34,8 +39,7 @@ const SearchResults = () => {
 
       <ul>
         {searchResults.map((item) => {
-          const isDisabled =
-            Object.keys(nominations).length >= 5 || nominations[item.imdbID];
+          const isDisabled = listComplete || nominations[item.imdbID];
           return (
             <MovieListItem
               key={`${item.Title}-${item.Year}`}
