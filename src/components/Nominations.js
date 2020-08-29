@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
-import { removeMovieFromNominations } from "../actions";
+import { removeMovieFromNominations, submitList } from "../actions";
 import { getNominationsArray } from "../reducers";
 
 import MovieListItem from "./MovieListItem";
@@ -27,7 +27,7 @@ const Nominations = () => {
         {nominationsArray.map((item) => {
           return (
             <MovieListItem
-              key={item.title}
+              key={`${item.title}-${item.year}`}
               title={item.title}
               year={item.year}
               action="x"
@@ -43,7 +43,15 @@ const Nominations = () => {
           );
         })}
       </ul>
-      {listComplete && <Submit>Submit Nominations</Submit>}
+      {listComplete && (
+        <Submit
+          onClick={() => {
+            dispatch(submitList());
+          }}
+        >
+          Submit Nominations
+        </Submit>
+      )}
     </Wrapper>
   );
 };

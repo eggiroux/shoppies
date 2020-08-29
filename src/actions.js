@@ -14,3 +14,11 @@ export const removeMovieFromNominations = (movieId) => ({
   type: "REMOVE_MOVIE_FROM_NOMINATIONS",
   movieId,
 });
+
+export const submitList = () => ({
+  type: "SUBMIT_LIST",
+});
+
+export const restartListProcess = () => ({
+  type: "RESTART_LIST_PROCESS",
+});

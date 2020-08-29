@@ -7,6 +7,7 @@ const initialState = persistedState({
   searchTerm: "",
   searchError: null,
   listComplete: false,
+  listSubmitted: false,
 });
 
 export default function listReducer(state = initialState, action) {
@@ -41,6 +42,21 @@ export default function listReducer(state = initialState, action) {
       return produce(state, (draftState) => {
         delete draftState.nominations[action.movieId];
         draftState.listComplete = false;
+      });
+    }
+    case "SUBMIT_LIST": {
+      console.log("submit list", action);
+      return produce(state, (draftState) => {
+        draftState.listSubmitted = true;
+        draftState.listComplete = false;
+        draftState.nominations = {};
+      });
+    }
+
+    case "RESTART_LIST_PROCESS": {
+      //console.log("remove movie", action);
+      return produce(state, (draftState) => {
+        draftState.listSubmitted = false;
       });
     }
 
