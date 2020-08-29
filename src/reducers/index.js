@@ -1,12 +1,13 @@
 import { produce } from "immer";
+import { persistedState } from "../utils";
 
-const initialState = {
+const initialState = persistedState({
   searchResults: [],
   nominations: {},
   searchTerm: "",
   searchError: null,
   listComplete: false,
-};
+});
 
 export default function listReducer(state = initialState, action) {
   switch (action.type) {
@@ -33,6 +34,7 @@ export default function listReducer(state = initialState, action) {
         if (Object.keys(draftState.nominations).length >= 5) {
           draftState.listComplete = true;
         }
+        localStorage.setItem("nominationsState", JSON.stringify(draftState));
       });
     }
     case "REMOVE_MOVIE_FROM_NOMINATIONS": {
@@ -40,6 +42,7 @@ export default function listReducer(state = initialState, action) {
       return produce(state, (draftState) => {
         delete draftState.nominations[action.movieId];
         draftState.listComplete = false;
+        localStorage.setItem("nominationsState", JSON.stringify(draftState));
       });
     }
 

@@ -36,7 +36,6 @@ const SearchResults = () => {
   return (
     <Wrapper>
       <h3>Results for "{searchTerm}"</h3>
-
       <ul>
         {searchResults.map((item) => {
           const isDisabled = listComplete || nominations[item.imdbID];

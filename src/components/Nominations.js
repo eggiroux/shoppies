@@ -13,6 +13,10 @@ const Nominations = () => {
   const nominations = useSelector(getNominationsArray);
   const listComplete = useSelector((state) => state.listComplete);
 
+  React.useEffect(() => {
+    localStorage.setItem("nominations", JSON.stringify(nominations));
+  }, [nominations]);
+
   return (
     <Wrapper>
       <h3>Nominations</h3>
