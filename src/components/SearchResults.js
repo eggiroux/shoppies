@@ -38,28 +38,31 @@ const SearchResults = () => {
       <h3>Results for "{searchTerm}"</h3>
       <ul>
         {searchResults.map((item) => {
-          const isDisabled = listComplete || nominations[item.imdbID];
           return (
             <MovieListItem
               key={`${item.Title}-${item.Year}`}
               title={item.Title}
               year={item.Year}
               movieId={item.imdbID}
-              isDisabled={isDisabled}
-              action="Nominate"
-              onClick={() => {
-                dispatch(
-                  addMovieToNominations({
-                    movieId: item.imdbID,
-                    movie: {
+            >
+              <Button
+                disabled={listComplete || nominations[item.imdbID]}
+                onClick={() => {
+                  dispatch(
+                    addMovieToNominations({
                       movieId: item.imdbID,
-                      title: item.Title,
-                      year: item.Year,
-                    },
-                  })
-                );
-              }}
-            />
+                      movie: {
+                        movieId: item.imdbID,
+                        title: item.Title,
+                        year: item.Year,
+                      },
+                    })
+                  );
+                }}
+              >
+                Nominate
+              </Button>
+            </MovieListItem>
           );
         })}
       </ul>
@@ -74,6 +77,8 @@ const Wrapper = styled.div`
   width: 50%;
   min-height: 200px;
 `;
+
+const Button = styled.button``;
 
 const Error = styled.p`
   margin-top: 10px;

@@ -1,13 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const MovieListItem = ({ title, year, isDisabled, onClick, action }) => {
+const MovieListItem = ({ title, year, children }) => {
   return (
     <Wrapper>
       <Name>{`${title} (${year})`}</Name>
-      <Button disabled={isDisabled} onClick={onClick}>
-        {action}
-      </Button>
+      {children}
     </Wrapper>
   );
 };
@@ -24,7 +22,5 @@ const Wrapper = styled.li`
 const Name = styled.p`
   padding: 0 10px;
 `;
-
-const Button = styled.button``;
 
 export default MovieListItem;

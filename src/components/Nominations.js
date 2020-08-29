@@ -6,12 +6,15 @@ import { removeMovieFromNominations } from "../actions";
 import { getNominationsArray } from "../reducers";
 
 import MovieListItem from "./MovieListItem";
+import UnstyledButton from "./UnstyledButton";
 
 const Nominations = () => {
   const dispatch = useDispatch();
 
-  const nominations = useSelector(getNominationsArray);
-  const listComplete = useSelector((state) => state.listComplete);
+  const nominationsArray = useSelector(getNominationsArray);
+  const { listComplete, nominations } = useSelector((state) => {
+    return { listComplete: state.listComplete, nominations: state.nominations };
+  });
 
   React.useEffect(() => {
     localStorage.setItem("nominations", JSON.stringify(nominations));
@@ -21,17 +24,22 @@ const Nominations = () => {
     <Wrapper>
       <h3>Nominations</h3>
       <ul>
-        {nominations.map((item) => {
+        {nominationsArray.map((item) => {
           return (
             <MovieListItem
               key={item.title}
               title={item.title}
               year={item.year}
-              action="Remove"
-              onClick={() => {
-                dispatch(removeMovieFromNominations(item.movieId));
-              }}
-            />
+              action="x"
+            >
+              <Button
+                onClick={() => {
+                  dispatch(removeMovieFromNominations(item.movieId));
+                }}
+              >
+                x
+              </Button>
+            </MovieListItem>
           );
         })}
       </ul>
@@ -49,7 +57,6 @@ const Wrapper = styled.div`
   background-color: white;
   width: 50%;
   min-height: 200px;
-  position: relative;
 `;
 
 const Submit = styled.button`
@@ -57,5 +64,7 @@ const Submit = styled.button`
   padding: 10px 40px;
   margin: 0 auto;
 `;
+
+const Button = styled(UnstyledButton)``;
 
 export default Nominations;

@@ -1,10 +1,10 @@
 export const persistedState = (initialState) => {
-  const savedState = localStorage.getItem("nominationsState");
+  const savedState = localStorage.getItem("nominations");
 
   if (savedState) {
-    return JSON.parse(savedState);
+    return { ...initialState, nominations: JSON.parse(savedState) };
   } else {
-    localStorage.setItem("nominationsState", JSON.stringify(initialState));
+    localStorage.setItem("nominations", JSON.stringify({}));
     return initialState;
   }
 };
