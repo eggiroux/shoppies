@@ -27,7 +27,7 @@ const SearchResults = () => {
   if (searchError) {
     return (
       <Wrapper>
-        <h3>Results for "{searchTerm}"</h3>
+        <h3>Results {searchTerm && `for "${searchTerm}"`}</h3>
         <Error>{searchError}</Error>
       </Wrapper>
     );
@@ -35,7 +35,7 @@ const SearchResults = () => {
 
   return (
     <Wrapper>
-      <h3>Results for "{searchTerm}"</h3>
+      <h3>Results {searchTerm && `for "${searchTerm}"`}</h3>
       <ul>
         {searchResults.map((item) => {
           return (
