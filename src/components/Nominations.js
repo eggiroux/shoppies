@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { COLORS } from "../constants";
+
 import { useSelector, useDispatch } from "react-redux";
 
 import { removeMovieFromNominations, submitList } from "../actions";
@@ -22,7 +24,12 @@ const Nominations = () => {
 
   return (
     <Wrapper>
-      <h3>Nominations</h3>
+      <h3>My Nominations</h3>
+      {nominationsArray.length === 0 && (
+        <Text>
+          Search and add your favorite movies to nominate them for Shoppies!
+        </Text>
+      )}
       <ul>
         {nominationsArray.map((item) => {
           return (
@@ -60,19 +67,58 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 30px;
-  margin-left: 30px;
+  margin-bottom: 30px;
   padding: 15px 30px;
   background-color: white;
   width: 50%;
   min-height: 200px;
+  background-color: ${COLORS.contour};
+  border-radius: 6px;
+  width: 100%;
+
+  & ul {
+    display: flex;
+    flex-wrap: wrap;
+
+    & li {
+      border: 1px solid black;
+      border-radius: 6px;
+      background-color: ${COLORS.background};
+      padding-top: 7px;
+      @media (max-width: 768px) {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  }
 `;
 
 const Submit = styled.button`
   border-radius: 5px;
   padding: 10px 40px;
   margin: 0 auto;
+  margin-top: 15px;
+  background-color: ${COLORS.accept};
+  color: ${COLORS.primary};
+  border: 1px solid ${COLORS.primary};
+  font-size: 1.2rem;
 `;
 
-const Button = styled(UnstyledButton)``;
+const Button = styled(UnstyledButton)`
+  background-color: ${COLORS.cancel};
+  padding: 2px 6px 4px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+  margin-bottom: 5px;
+  position: relative;
+  top: -10px;
+  right: -5px;
+`;
+
+const Text = styled.p`
+  margin-top: 10px;
+`;
 
 export default Nominations;

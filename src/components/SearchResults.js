@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+import { COLORS } from "../constants";
 
 import { addMovieToNominations } from "../actions";
 
@@ -71,14 +72,29 @@ const SearchResults = () => {
 };
 
 const Wrapper = styled.div`
-  margin-top: 30px;
   padding: 15px 30px;
   background-color: white;
   width: 50%;
   min-height: 200px;
+  background-color: ${COLORS.contour};
+  border-radius: 6px;
+  flex: 5;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
-const Button = styled.button``;
+const Button = styled.button`
+  background-color: ${COLORS.accept};
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid ${COLORS.primary};
+
+  &:disabled {
+    border: none;
+  }
+`;
 
 const Error = styled.p`
   margin-top: 10px;

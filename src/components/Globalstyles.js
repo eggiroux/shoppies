@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { COLORS } from "../constants";
 
 export default createGlobalStyle`
     *,
@@ -63,12 +64,12 @@ export default createGlobalStyle`
 
     body {
         line-height: 1.25;
-        background: lightgray;
-        color: black;
+        background: ${COLORS.background};
+        color: ${COLORS.primary};
     }
 
     a {
-        color: #69ffcf;
+        color: ${COLORS.primary};
         text-decoration: none;
     }
 `;

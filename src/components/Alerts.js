@@ -6,6 +6,8 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
 
+import { COLORS } from "../constants";
+
 import { restartListProcess } from "../actions";
 
 function SlideTransition(props) {
@@ -14,7 +16,6 @@ function SlideTransition(props) {
 
 const Alerts = () => {
   const dispatch = useDispatch();
-
   const { listSubmitted, listComplete } = useSelector((state) => {
     return {
       listSubmitted: state.listSubmitted,
@@ -22,10 +23,8 @@ const Alerts = () => {
     };
   });
 
-  const [showCompleteAlert, setShowCompleteAlert] = React.useState(
-    listComplete
-  );
-  const [showSubmitAlert, setShowSubmitAlert] = React.useState(listSubmitted);
+  const [showCompleteAlert, setShowCompleteAlert] = React.useState(false);
+  const [showSubmitAlert, setShowSubmitAlert] = React.useState(false);
 
   React.useEffect(() => {
     console.log("listComplete changed");
@@ -76,7 +75,7 @@ const Alerts = () => {
           <IconButton
             size="small"
             aria-label="close"
-            color="inherit"
+            color={"inherit"}
             onClick={handleSubmitClose}
           >
             <CloseIcon fontSize="small" />

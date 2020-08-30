@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import { COLORS } from "../../constants";
+
 import { FiSearch } from "react-icons/fi";
 
 import { searchResultsFromApi } from "../../actions";
@@ -16,7 +18,7 @@ const SearchBar = () => {
 
   return (
     <Wrapper>
-      <Title>Movie title</Title>
+      <Title>Search for a movie</Title>
       <SearchArea>
         <FiSearch />
         <TextInput
@@ -61,8 +63,15 @@ const SearchBar = () => {
 };
 
 const Wrapper = styled.div`
-  background-color: white;
   padding: 15px 30px;
+  margin-bottom: 30px;
+  margin-right: 30px;
+  background-color: ${COLORS.contour};
+  border-radius: 6px;
+  flex: 3;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Title = styled.p`
@@ -74,6 +83,8 @@ const SearchArea = styled.div`
   border: 1px grey solid;
   display: flex;
   align-items: center;
+  background-color: ${COLORS.contour};
+  border-radius: 6px;
 `;
 const TextInput = styled.input`
   margin-left: 10px;
@@ -82,6 +93,11 @@ const TextInput = styled.input`
   line-height: 50px;
   font-size: 18px;
   outline: none;
+  background-color: ${COLORS.contour};
+  border-radius: 6px;
+  color: ${COLORS.primary};
 `;
 
 export default SearchBar;
+
+// max 450px

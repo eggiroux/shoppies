@@ -13,10 +13,11 @@ function App() {
     <Wrapper>
       <Globalstyles />
       <Header />
-      <SearchBar />
+      <Nominations />
+
       <Bottom>
+        <SearchBar />
         <SearchResults />
-        <Nominations />
       </Bottom>
       <Alerts />
     </Wrapper>
@@ -25,11 +26,18 @@ function App() {
 
 const Wrapper = styled.div`
   padding: 35px 150px;
+  @media (max-width: 768px) {
+    padding: 20px 35px;
+  }
 `;
 
 const Bottom = styled.div`
   display: flex;
   align-items: start;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export default App;
