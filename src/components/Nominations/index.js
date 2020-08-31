@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { COLORS } from "../constants";
+import { COLORS } from "../../constants";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import { removeMovieFromNominations, submitList } from "../actions";
-import { getNominationsArray } from "../reducers";
+import { removeMovieFromNominations, submitList } from "../../actions";
+import { getNominationsArray } from "../../reducers";
 
-import MovieListItem from "./MovieListItem";
-import UnstyledButton from "./UnstyledButton";
+import MovieListItem from "../MovieListItem";
+import UnstyledButton from "../UnstyledButton";
+import Counter from "./Counter";
 
 const Nominations = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const Nominations = () => {
       <h3>My Nominations</h3>
       {nominationsArray.length === 0 && (
         <Text>
-          Search and add your favorite movies to nominate them for Shoppies!
+          Search and add your 5 favorite movies to nominate them for Shoppies!
         </Text>
       )}
       <ul>
@@ -59,6 +60,7 @@ const Nominations = () => {
           Submit Nominations
         </Submit>
       )}
+      <Counter />
     </Wrapper>
   );
 };
@@ -75,6 +77,7 @@ const Wrapper = styled.div`
   background-color: ${COLORS.contour};
   border-radius: 6px;
   width: 100%;
+  position: relative;
 
   & ul {
     display: flex;

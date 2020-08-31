@@ -5,7 +5,7 @@ import { COLORS } from "../constants";
 const Header = () => {
   return (
     <Wrapper>
-      <h2>The Shoppies</h2>
+      <h2>The Shoppies™</h2>
     </Wrapper>
   );
 };

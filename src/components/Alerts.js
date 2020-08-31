@@ -27,14 +27,14 @@ const Alerts = () => {
   const [showSubmitAlert, setShowSubmitAlert] = React.useState(false);
 
   React.useEffect(() => {
-    console.log("listComplete changed");
+    //console.log("listComplete changed");
     if (listComplete) {
       setShowCompleteAlert(true);
     }
   }, [listComplete]);
 
   React.useEffect(() => {
-    console.log("listSubmitted changed");
+    // console.log("listSubmitted changed");
     if (listSubmitted) {
       setShowSubmitAlert(true);
     }

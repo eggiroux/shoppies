@@ -99,5 +99,3 @@ const TextInput = styled.input`
 `;
 
 export default SearchBar;
-
-// max 450px
