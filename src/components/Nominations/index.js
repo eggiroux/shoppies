@@ -41,6 +41,7 @@ const Nominations = () => {
               action="x"
             >
               <Button
+                tabIndex="0"
                 onClick={() => {
                   dispatch(removeMovieFromNominations(item.movieId));
                 }}
@@ -108,16 +109,21 @@ const Submit = styled.button`
 `;
 
 const Button = styled(UnstyledButton)`
-  background-color: ${COLORS.cancel};
-  padding: 2px 6px 4px;
+  color: ${COLORS.cancel};
+
   border-radius: 5px;
   display: flex;
   justify-content: center;
-  font-size: 12px;
+  font-size: 18px;
+  font-weight: 1000px;
   margin-bottom: 5px;
   position: relative;
   top: -10px;
-  right: -5px;
+  right: 2px;
+
+  &:focus {
+    outline: 2px solid ${COLORS.cancel};
+  }
 `;
 
 const Text = styled.p`
