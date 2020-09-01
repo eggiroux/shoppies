@@ -22,6 +22,7 @@ const Nominations = () => {
     };
   });
 
+  //save the nomination list to disk every time it changes
   React.useEffect(() => {
     localStorage.setItem("nominations", JSON.stringify(nominations));
   }, [nominations]);
@@ -29,6 +30,7 @@ const Nominations = () => {
   return (
     <Wrapper>
       <h3>My Nominations</h3>
+      {/* if the list is empty, show instructions to inform the user */}
       {listStatus === "empty" && (
         <Text>
           Search and add your 5 favorite movies to nominate them for Shoppies!
@@ -55,6 +57,7 @@ const Nominations = () => {
           );
         })}
       </ul>
+      {/* if the list is complete, show the submit button */}
       {listStatus === "complete" && (
         <Submit
           onClick={() => {
@@ -64,7 +67,7 @@ const Nominations = () => {
           Submit Nominations
         </Submit>
       )}
-      <Counter />
+      <Counter listStatus={listStatus} listLength={nominationsArray.length} />
     </Wrapper>
   );
 };

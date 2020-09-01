@@ -1,16 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { VALUES } from "../../constants";
 
-import { getNominationsArray } from "../../reducers";
-
-const Counter = () => {
-  const listStatus = useSelector((state) => state.list.status);
-  const nominationsArray = useSelector(getNominationsArray);
-
+//the counter is more of a cosmetic component, so get his values as props instead of using the redux setup
+const Counter = ({ listStatus, listLength }) => {
   return (
     <Wrapper>
-      {listStatus !== "empty" && `${nominationsArray.length} / 5`}
+      {/* if the list is not empty, show the counter to remind the user how many film should be added */}
+      {listStatus !== "empty" && `${listLength} / ${VALUES.MAX_ITEMS_ON_LIST}`}
     </Wrapper>
   );
 };

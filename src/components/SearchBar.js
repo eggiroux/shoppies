@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { COLORS } from "../../constants";
+import { COLORS } from "../constants";
 
 import { FiSearch } from "react-icons/fi";
 
-import { searchResultsFromApi } from "../../actions";
+import { searchResultsFromApi } from "../actions";
 
 const SearchBar = () => {
   const dispatch = useDispatch();

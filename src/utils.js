@@ -1,10 +1,11 @@
-export const persistedState = (initialState) => {
-  const savedState = localStorage.getItem("nominations");
+export const persistedState = (initialState, persistedKey) => {
+  const savedState = localStorage.getItem(persistedKey);
 
   if (savedState) {
-    return { ...initialState, nominations: JSON.parse(savedState) };
+    //if localStorage had a "savedKey" saved, return the initial state with that list
+    return { ...initialState, persistedKey: JSON.parse(savedState) };
   } else {
-    localStorage.setItem("nominations", JSON.stringify({}));
+    //if not, then return initialState as is
     return initialState;
   }
 };

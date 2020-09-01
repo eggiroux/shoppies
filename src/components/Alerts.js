@@ -14,12 +14,15 @@ function SlideTransition(props) {
 
 const Alerts = () => {
   const dispatch = useDispatch();
+
+  //listen to the list status to decide when to show the alerts
   const { listStatus } = useSelector((state) => {
     return {
       listStatus: state.list.status,
     };
   });
 
+  //track the alert status locally, because they are "effects" only and should not control the list making flow
   const [showCompleteAlert, setShowCompleteAlert] = React.useState(false);
   const [showSubmitAlert, setShowSubmitAlert] = React.useState(false);
 
@@ -37,12 +40,14 @@ const Alerts = () => {
     }
   }, [listStatus]);
 
+  //make sure the alerts
   const handleListClose = () => {
     setShowCompleteAlert(false);
   };
 
   const handleSubmitClose = () => {
     setShowSubmitAlert(false);
+    //after the alert is shown, restart the list making process.
     dispatch(restartListProcess());
   };
 

@@ -3,10 +3,15 @@ import { produce } from "immer";
 import { persistedState } from "../utils";
 import { VALUES } from "../constants";
 
-const initialState = persistedState({
-  satus: "empty",
-  nominations: {},
-});
+//call persisted state to grab a saved nomination list if it exists
+//the initial state is still defined here to ease of use.
+const initialState = persistedState(
+  {
+    status: "empty",
+    nominations: {},
+  },
+  "nominations"
+);
 
 export default function listReducer(state = initialState, action) {
   switch (action.type) {
@@ -27,13 +32,15 @@ export default function listReducer(state = initialState, action) {
       return produce(state, (draftState) => {
         delete draftState.nominations[action.movieId];
         draftState.status = "incomplete";
+        if (Object.keys(state.nominations).length === 1) {
+          draftState.status = "empty";
+        }
       });
     }
     case "SUBMIT_LIST": {
-      console.log("submit list", action);
+      //console.log("submit list", action);
       return produce(state, (draftState) => {
         draftState.status = "submitted";
-        draftState.nominations = {};
       });
     }
 
@@ -41,6 +48,7 @@ export default function listReducer(state = initialState, action) {
       //console.log("remove movie", action);
       return produce(state, (draftState) => {
         draftState.status = "empty";
+        draftState.nominations = {};
       });
     }
 

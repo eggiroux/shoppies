@@ -26,6 +26,7 @@ const SearchResults = () => {
     };
   });
 
+  //early return when search went wrong, display the error
   if (searchStatus === "error") {
     return (
       <Wrapper>
@@ -35,6 +36,7 @@ const SearchResults = () => {
     );
   }
 
+  //when there are no errors, show the search results
   return (
     <Wrapper>
       <h3>Results {searchTerm && `for "${searchTerm}"`}</h3>

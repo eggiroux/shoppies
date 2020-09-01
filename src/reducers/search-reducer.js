@@ -2,8 +2,8 @@ import { produce } from "immer";
 
 const initialState = {
   status: "idle",
-  results: [],
   term: "",
+  results: [],
   error: null,
 };
 
