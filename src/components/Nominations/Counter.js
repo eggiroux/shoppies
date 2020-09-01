@@ -5,10 +5,12 @@ import styled from "styled-components";
 import { getNominationsArray } from "../../reducers";
 
 const Counter = () => {
+  const listStatus = useSelector((state) => state.list.status);
   const nominationsArray = useSelector(getNominationsArray);
+
   return (
     <Wrapper>
-      {nominationsArray.length !== 0 && `${nominationsArray.length} / 5`}
+      {listStatus !== "empty" && `${nominationsArray.length} / 5`}
     </Wrapper>
   );
 };

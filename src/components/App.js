@@ -19,6 +19,7 @@ function App() {
         <SearchBar />
         <SearchResults />
       </Bottom>
+
       <Alerts />
     </Wrapper>
   );

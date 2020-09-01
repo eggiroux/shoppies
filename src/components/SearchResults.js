@@ -10,6 +10,7 @@ import MovieListItem from "./MovieListItem";
 const SearchResults = () => {
   const dispatch = useDispatch();
   const {
+    searchStatus,
     searchResults,
     searchTerm,
     searchError,
@@ -17,15 +18,15 @@ const SearchResults = () => {
     listComplete,
   } = useSelector((state) => {
     return {
-      searchResults: state.searchResults,
-      searchTerm: state.searchTerm,
-      searchError: state.searchError,
-      nominations: state.nominations,
-      listComplete: state.listComplete,
+      searchStatus: state.search.status,
+      searchResults: state.search.results,
+      searchTerm: state.search.term,
+      searchError: state.search.error,
+      nominations: state.list.nominations,
     };
   });
 
-  if (searchError) {
+  if (searchStatus === "error") {
     return (
       <Wrapper>
         <h3>Results {searchTerm && `for "${searchTerm}"`}</h3>

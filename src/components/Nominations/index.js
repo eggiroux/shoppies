@@ -15,8 +15,11 @@ const Nominations = () => {
   const dispatch = useDispatch();
 
   const nominationsArray = useSelector(getNominationsArray);
-  const { listComplete, nominations } = useSelector((state) => {
-    return { listComplete: state.listComplete, nominations: state.nominations };
+  const { listStatus, nominations } = useSelector((state) => {
+    return {
+      listStatus: state.list.status,
+      nominations: state.list.nominations,
+    };
   });
 
   React.useEffect(() => {
@@ -26,7 +29,7 @@ const Nominations = () => {
   return (
     <Wrapper>
       <h3>My Nominations</h3>
-      {nominationsArray.length === 0 && (
+      {listStatus === "empty" && (
         <Text>
           Search and add your 5 favorite movies to nominate them for Shoppies!
         </Text>
@@ -52,7 +55,7 @@ const Nominations = () => {
           );
         })}
       </ul>
-      {listComplete && (
+      {listStatus === "complete" && (
         <Submit
           onClick={() => {
             dispatch(submitList());
