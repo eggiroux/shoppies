@@ -99,7 +99,8 @@ const Button = styled.button`
 
 const Error = styled.p`
   margin-top: 10px;
-  color: red;
+  color: ${COLORS.cancel};
+  font-weight: bold;
 `;
 
 export default SearchResults;
